@@ -1,5 +1,6 @@
 class Song 
-    attr_accessor :name, :artist, :genre
+    attr_accessor :name, :artist
+    attr_reader :genre
 
     @@all = []
 
@@ -10,7 +11,7 @@ class Song
             self.artist = artist 
         end
         if genre != nil 
-            self.genre = genre
+            self.genre = genre 
         end
     end 
 
@@ -39,10 +40,12 @@ class Song
         @artist.add_song(self)
     end
 
-    # def genre=(genre)
-    #     @genre = genre 
-    #     @genre.add_song(self)
-    # end
+    def genre=(genre)
+        @genre = genre 
+        a = @genre.songs
+        if a.include?(song) 
+            a << self 
+        end
+    end
   
-
 end 
