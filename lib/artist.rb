@@ -1,5 +1,7 @@
+require "pry"
 class Artist 
-    attr_accessor :name, :songs
+    extend Concerns::Findable
+    attr_accessor :name, :songs, :genre
 
     @@all = []
 
@@ -37,6 +39,24 @@ class Artist
         if song.artist != self
             @songs << song 
             song.artist = self
+        end
+    end
+
+    ## Associations - Artist and Genre
+
+    def songs_array 
+        Song.all.select do |song|
+            song.artist == self 
+        end 
+    end 
+
+    def genres 
+        binding.pry    
+        songs_array.map do |song|
+            if song.name != self
+                
+                song.genre   
+            end
         end
     end
 

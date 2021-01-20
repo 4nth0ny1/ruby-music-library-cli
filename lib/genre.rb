@@ -1,5 +1,6 @@
 class Genre 
-    attr_accessor :name, :songs
+    extend Concerns::Findable
+    attr_accessor :name, :songs, :artist
 
     @@all = []
 
@@ -33,4 +34,9 @@ class Genre
         @songs 
     end 
 
+    ## Associations - Artist and Genre 
+
+    def genres
+        songs.collect {|s| s.genre}.uniq
+    end
 end
