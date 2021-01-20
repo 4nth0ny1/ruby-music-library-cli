@@ -50,15 +50,18 @@ class Artist
         end 
     end 
 
-    def genres 
-        binding.pry    
-        songs_array.map do |song|
-            if song.name != self
-                
-                song.genre   
-            end
-        end
-    end
+    # def genres   
+    #     binding.pry
+    #     songs_array.map do |song|
+    #         if song.genre != self
+    #             song.genre   
+    #         end
+    #     end
+    # end
 
+    def genres
+        songs_array.collect{ |s| s.genre }.uniq
+      end
+    
 
 end

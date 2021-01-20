@@ -29,7 +29,7 @@ class Song
     end 
 
     def self.create(name) 
-        songs = self.new(name)
+        songs = new(name)
         songs.save
         songs
     end
@@ -55,14 +55,17 @@ class Song
     ##Song
     
     def self.find_by_name(name)
-        self.all.find { |artist| artist.name == name }
+        all.find { |a| a.name == name }
       end
   
+    #   def self.find_or_create_by_name(name)
+    #         find_by_name(name) || create(name)
+    #   end 
+
       def self.find_or_create_by_name(name)
-        if self.name != self
-            self.find_by_name(name) || self.create(name)
-        end
-      end 
+        find_by_name(name) || create(name)
+      end
+    
 
       ## MusicImporter
       def self.new_from_filename(filename)

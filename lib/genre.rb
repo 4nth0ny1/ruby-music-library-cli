@@ -36,7 +36,8 @@ class Genre
 
     ## Associations - Artist and Genre 
 
-    def genres
-        songs.collect {|s| s.genre}.uniq
-    end
+    def artists
+        songs.collect{ |s| s.artist }.uniq
+      end
+    
 end
