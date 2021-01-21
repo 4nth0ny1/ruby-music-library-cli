@@ -25,6 +25,8 @@ class MusicLibraryController
         end
     end
 
+    ### CLI Methods
+
     def list_songs
         a = Song.all.sort_by do |obj| 
             obj.name 
@@ -36,7 +38,6 @@ class MusicLibraryController
     end
 
     def list_artists
-      
         b = Artist.all.sort_by do |obj|
             obj.name
         end
@@ -50,10 +51,38 @@ class MusicLibraryController
         c = Genre.all.sort_by do |obj|
             obj.name
         end
-        
+
         c.each_with_index do |ele, index|
             puts "#{index + 1}. #{ele.name}"
-            
         end 
     end
+
+    def list_songs_by_artist
+        puts "Please enter the name of an artist:"
+        answer = gets.chomp
+        
+        ## prints all songs by a particular artist in a numbered list (alpha by song name)
+        d = answer.sort_by do |obj|
+            
+            obj.name
+        end 
+        
+        d.each_with_index do |ele, index|
+            puts "#{index + 1}. #{ele.name} - #{ele.genre.name}"
+        end
+    end
+
+    def list_songs_by_genre
+        puts "Please enter the name of a genre:"
+        gets.chomp
+    end
+
+    def play_song
+        puts "Which song number would you like to play?"
+        gets.chomp
+    end
+
+
+    ## CLI Triggers
+
 end 
