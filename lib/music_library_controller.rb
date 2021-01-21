@@ -60,8 +60,15 @@ class MusicLibraryController
     def list_songs_by_artist
         puts "Please enter the name of an artist:"
         answer = gets.chomp
-        
+        if Artist.find_by_name(answer)
+            binding.pry
+        end
+
         ## prints all songs by a particular artist in a numbered list (alpha by song name)
+        ## make sure the artist exists 
+
+        
+
         d = answer.sort_by do |obj|
             
             obj.name
