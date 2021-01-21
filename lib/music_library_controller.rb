@@ -60,28 +60,25 @@ class MusicLibraryController
     def list_songs_by_artist
         puts "Please enter the name of an artist:"
         answer = gets.chomp
-        if Artist.find_by_name(answer)
-            binding.pry
-        end
-
-        ## prints all songs by a particular artist in a numbered list (alpha by song name)
-        ## make sure the artist exists 
-
-        
-
-        d = answer.sort_by do |obj|
-            
-            obj.name
-        end 
-        
-        d.each_with_index do |ele, index|
-            puts "#{index + 1}. #{ele.name} - #{ele.genre.name}"
+        if artist = Artist.find_by_name(answer)
+            artist.songs.uniq.sort do |a, b|
+                a.name <=> b.name
+            end.each_with_index do |ele, index|
+               puts "#{index + 1}. #{ele.name} - #{ele.genre.name}"  
+            end
         end
     end
 
     def list_songs_by_genre
         puts "Please enter the name of a genre:"
-        gets.chomp
+        genre_answer = gets.chomp
+        if genre = Genre.find_by_name(genre_answer)
+            genre.songs.uniq.sort do |a, b|
+                a.name <=> b.name
+            end.each_with_index do |ele, index|
+                puts "#{index + 1}. #{ele.artist.name} - #{ele.name}"
+            end 
+        end
     end
 
     def play_song
@@ -91,5 +88,7 @@ class MusicLibraryController
 
 
     ## CLI Triggers
+
+    
 
 end 
